@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.http.HttpStatusCode;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Getter
@@ -23,11 +25,16 @@ public class Bank {
     private Long id;
 
     @Column(name = "fiid")
+    @NotBlank
+    @NotNull(message = "Fiid must not be null")
     private String fiid;
 
     @Column(name = "bank_name")
+    @NotBlank
+    @NotBlank
     private String name;
 
+    @NotNull
     @Column(name = "available_bank")
     private Boolean availableBank;
 
