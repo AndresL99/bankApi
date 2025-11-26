@@ -8,12 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @ControllerAdvice
-public class HandlerException {
+public class HandlerException extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({ConstraintViolationException.class})
     public ResponseEntity<Object> handledConstraintViolation(ConstraintViolationException exception, WebRequest webRequest)
@@ -28,7 +29,7 @@ public class HandlerException {
     }
 
     @ExceptionHandler({BankException.class})
-    public ResponseEntity<Object>candidateAlreadyExist(BankException bankException)
+    public ResponseEntity<Object>BankAlreadyExist(BankException bankException)
     {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(bankException.getMessage());
     }
